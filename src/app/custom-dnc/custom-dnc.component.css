@@ -1,0 +1,397 @@
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.login-wrapper {
+    color: #870A3C !important;
+    width: 900px;
+    height: auto;
+    margin: auto;
+}
+
+#bulkDNC,
+#singleDNC {
+    margin-left: 5px;
+    font: bold 17px Helvetica !important;
+}
+
+label {
+    font: normal 14px Helvetica !important;
+}
+
+.bottom {
+    margin-bottom: 10px;
+}
+
+.space {
+    margin-right: 10px;
+}
+
+.mat-form-field {
+    width: 470px !important;
+}
+
+#container {
+    display: inline-block;
+    margin: 3px;
+    width: 400px;
+}
+
+td input {
+    background-color: transparent !important;
+    border: 0.5px solid #D2D2D2;
+    width: 170px;
+    border-radius: 0px;
+    padding: 5px 10px;
+    opacity: 0.8;
+    font-size: 12px;
+    outline: none;
+}
+
+td select {
+    background-color: transparent !important;
+    border: 0.5px solid #D2D2D2;
+    color: #FFFFFF !important;
+    border-radius: 0px;
+    opacity: 0.8;
+    font-size: 12px;
+    margin-left: 1px;
+    outline: none;
+}
+
+select {
+    color: gray;
+    background: #C6C6Ca;
+    border: 1px solid #870A3C;
+    outline: none;
+}
+
+select option {
+    background-color: #C6C6CA;
+    color: #2f2f2f;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+}
+
+#uploadFile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+}
+
+.row-panel {
+    display: flex;
+    flex-direction: row;
+}
+
+.callback-row-selection {
+    height: 30%;
+    margin-left: 2px;
+}
+
+.button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #870A3C;
+    font: bold 14px Helvetica !important;
+    color: #F7F7F7 !important;
+    border: none !important;
+}
+
+.button:hover {
+    background-color: #a72d36;
+}
+
+.form-field {
+    margin-top: 8px;
+    margin-left: 48px;
+    font-family: Helvetica;
+    font-size: 15px;
+}
+
+.left-line-space {
+    margin-left: 20px;
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+.right-line-space {
+    font-size: 17px;
+    font-family: Helvetica;
+}
+
+#labeldiv {
+    display: inline-block;
+    width: 140px;
+}
+
+#labelRdiv {
+    display: inline-block;
+    width: 120px;
+}
+
+#inputdiv {
+    display: inline-block;
+    width: 200px;
+}
+
+input {
+    outline: none;
+    color: gray;
+    background-color: #C6C6CA;
+    border: 1px solid #870A3C;
+    height: 20px;
+}
+
+.email-error-msg {
+    font-size: 80%;
+    color: #dc3545;
+    margin-left: 2px;
+}
+
+.input-font-size {
+    font-size: 15px;
+    font-family: Helvetica;
+}
+
+.date-size {
+    width: 160px;
+    font-size: 16px;
+}
+
+.end-date {
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+
+/* .input-width {
+    margin-left: 3px;
+} */
+
+.button-space {
+    margin-right: 10px;
+}
+
+.button-right {
+    text-align: right;
+}
+
+.spinner {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    border-right-color: #222;
+    animation: spin 0.5s linear infinite;
+    display: inline-block;
+    position: absolute;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: lightgray;
+    color: #870A3C;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-weight: bold;
+    border: 10px solid;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 0px;
+    right: 8px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+    cursor: pointer;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .popup {
+        width: 70%;
+    }
+}
+
+#loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.msg-success {
+    text-align: center;
+    font-size: x-large;
+    color: #870A3C;
+}
+
+.loader {
+    position: fixed;
+    left: 45%;
+    top: 40%;
+    z-index: 1;
+    width: 76px;
+    height: 100px;
+    margin: auto;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #870A3C;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    background: transparent;
+    color: gray;
+}
+
+.error-msg {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    /* font-size: small; */
+}
+
+.confirmpopup {
+    margin: 68px auto;
+    padding: 10px;
+    background: #C6C6CA;
+    color: darkgray;
+    border-radius: 5px;
+    width: 23%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-weight: bold;
+    border: 5px solid #870A3C;
+}
+
+.confirmpopup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+.close {
+    text-align: right;
+}
+
+.space-button {
+    margin-right: 11px;
+}
+
+input.phone_validation::-webkit-outer-spin-button,
+input.phone_validation::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#snackbar {
+    visibility: hidden;
+    background-color: #870A3C;
+    color: #ffffff;
+    padding: 10px;
+    z-index: 1;
+    width: fit-content;
+    margin: 0 auto 6px;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    justify-content: center;
+    position: absolute;
+}
+
+#snackbar.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0s 2.5s;
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 0;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+

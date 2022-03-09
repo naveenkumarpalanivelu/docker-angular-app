@@ -1,0 +1,93 @@
+.dnc-login {
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform: translate(0%, 50%);
+    color: red;
+    font-weight: bold;
+}
+
+#absa {
+    width: 12%;
+    height: 12%;
+}
+
+.Uname,
+.Pass {
+    background-color: transparent !important;
+    border: 2px solid #870A3C;
+    height: 30px;
+    width: 300px;
+    border-radius: 0px;
+    padding: 5px 10px;
+    margin: 15px;
+    font-size: 15px;
+    outline: none;
+}
+
+::placeholder {
+    color: #870A3C;
+}
+
+.login-button {
+    width: 120px;
+    height: 40px;
+    border-radius: 13px;
+    background-color: #870A3C;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px;
+    color: #F7F7F7 !important;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #a72d36;
+}
+
+.header {
+    text-align: center;
+    font: bold 25px Helvetica !important;
+    color: #870A3C !important;
+    margin: 15px 0;
+}
+
+#snackbar {
+    visibility: hidden;
+    background-color: #870A3C;
+    color: #ffffff;
+    padding: 10px;
+    z-index: 1;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+#snackbar.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,322 @@
+<div class="login-wrapper" [ngClass]="{'disabled':isbulkInsert }" fxLayout="row" fxLayoutAlign="center center">
+
+    <div style="padding: 10px;"></div>
+    <div style="margin-bottom: 5px;margin-left: 25px;">
+        <input id="bulkdnc" type="radio" value="bulkdnc" style="vertical-align: -4px;cursor: pointer;" name="dncgroup" checked="true" (change)="bulkDNCChange()">
+        <label id="bulkDNC" for="bulkdnc">Bulk DNC Upload</label>
+    </div>
+    <div [hidden]="isdisablebulkDNC" style="margin-top: 20px;margin-left: 50px;">
+        <label for="bulk" style="margin-left: 22px;margin-right: 10px;">DNC CSV File :</label>
+        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" [(ngModel)]="uploadFile" onclick="this.value = null" (change)="uploadListener($event)" accept=".csv" style="width: 34%;font-family: Helvetica;" />
+        <button class="button" type="button" style="margin-left: 20px;" (click)="dncBulkInsert()" [disabled]="!isDisabled">Upload </button>
+    </div>
+    <div>
+
+        <div style="margin-top: 25px;margin-left: 28px;">
+            <input id="dnc" type="radio" value="dnc" style="vertical-align: -3px;cursor: pointer;" name="dncgroup" [(ngModel)]="selectSingle" (change)="singleDNCChange()">
+            <label id="singleDNC" for="single" style="vertical-align: 1px;">Single DNC Entry</label>
+        </div>
+        <div [hidden]="isdisableSingleDNC">
+            <form #form="ngForm" class="form-field">
+                <div>
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-firstname-grid" class="left-line-space" aria-label="firstname">First Name
+                                :</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input class="input-font-size" id="firstName" name="firstName" placeholder="First Name" (keypress)="checkSpcialChar($event,'')" maxlength="50" style="width: 170px;" ngModel required aria-label="firstname" role="textbox" />
+                        </div>
+
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-lastname-grid" class="right-line-space" aria-label="lastname">Last
+                                Name:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="lastName" id="lastName" type="text" class="input-font-size" placeholder="Last Name" (keypress)="checkSpcialChar($event,'')" maxlength="50" style="width: 170px;" ngModel aria-label="lastname" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-accountNo-grid" class="left-line-space" aria-label="accountno" style="margin-left: 21px;">Account No:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="accountNo" class="input-font-size" placeholder="Account No" (keypress)="checkSpcialChar($event,'0')" maxlength="50" style="width: 170px;" ngModel aria-label="accountno" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-clientid-grid" class="right-line-space" aria-label="clientidnumber" style="white-space: nowrap;">Client ID Number:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="clientIdNumber" class="input-font-size" (keypress)="checkSpcialChar($event,'0')" placeholder="Client ID Number" type="text" ngModel maxlength="50" style="width: 170px;" aria-label="clientidnumber" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-contacttype-grid" class="grid-columns__label" aria-label="contacttype" style="margin-left: 20px;width: 170px;">Custom DNC List:</label>
+                        </div>
+                        <div id="inputdiv" class="left-line-space input-font-size" style="display: inline-flex;margin-left: 0px;">
+                            <select [ngModel]="dncItem" (ngModelChange)="dncListChange($event)" name="dncName">
+                                <option [value]=null>Select DNC List</option>
+                                <option [ngValue]="dnc" *ngFor="let dnc of dnclist">{{dnc.dncListName}}</option>
+                              </select>
+                            <input type="hidden" name="customDncList" style="margin-left: 3px;" [(ngModel)]="customDncList" ngModel aria-label="customDncList" role="textbox" />
+                            <input type="hidden" name="dncListId" style="margin-left: 3px;" [(ngModel)]="dncListId" ngModel aria-label="dncListId" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-reason-grid" class="right-line-space input-font-size" aria-label="contactlistname">Reason:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="reason" placeholder="Reason" ngModel aria-label="reason" maxlength="200" role="textbox" style="width: 170px;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="container">
+                        <label for="input-startdate-grid" class="left-line-space" aria-label="contactlistname" style="margin-left: 20px;">Start Time Date:</label>
+                        <div style="margin-left: 20px;margin-top:5px;margin-bottom: 5px;">
+                            <div style="display: inline-block;">
+                                <div class="row-panel callback-row-selection">
+                                    <input type="date" [(ngModel)]="startDate" name="startDate" id='datepicker' placeholder='Select a date' style="margin-left: 11px;" class="date-size" [min]="minDate" (change)="loadStartDateTime()">
+
+                                    <select class="ddlClock" name="ddlhours" [(ngModel)]="ddlhours" (change)="loadStartDateTime()">
+                                        <option *ngFor="let hour of hours; let i = index" [value]="hour">
+                                            {{hour}}
+                                        </option>
+                                    </select>
+                                    <select class="ddlClock" name="ddlmin" [(ngModel)]="ddlmin" (change)="loadStartDateTime()">
+                                        <option *ngFor="let min of minutes; let i = index" [value]="min"
+                                            [attr.selected]="i == 0">
+                                            {{min}}
+                                        </option>
+                                    </select>
+
+                                    <select class="ddlTime" name="ddltime" [(ngModel)]="ddltime" (change)="loadStartDateTime()">
+                                        <option *ngFor="let tim of time; let i = index" value={{tim}}
+                                            [attr.selected]="!i">
+                                            {{tim}}
+                                        </option>
+                                    </select>
+                                    <input type="hidden" name="startTimeDate" [(ngModel)]="startDateAndTime" ngModel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <label for="input-startdate-grid" aria-label="contactlistname">End Time Date:</label>
+                        <div style="display: inline-block;margin-left: 36px;">
+                            <input id="noenddate" type="checkbox" value="No End Date" name="noenddate" ngModel class="end-date" (change)="endDateOption($event)" style="width: 20px;height:12px;margin-left:-17px;">
+                            <label class="custom-control-label" for="noenddate" style="vertical-align: 2px; font-size: 11px !important;">No End Date.</label>
+                        </div>
+                        <div style="margin-top: 5px;margin-bottom: 5px;">
+                            <div style="display: inline-block;">
+                                <div class="row-panel callback-row-selection">
+                                    <input type="date" name="endDate" [(ngModel)]="endDate" [disabled]=isDisableEndDate style="margin-left: 11px;" id='datepicker' [min]="minEndDate" placeholder='Select a date' class="date-size" (change)="loadEndDateTime()">
+
+                                    <select class="ddlClock" name="ddlendhours" [(ngModel)]="ddlendhours" [disabled]=isDisableEndHours (change)="loadEndDateTime()">
+                                        <option *ngFor="let hour of hours; let i = index" [value]="hour">
+                                            {{hour}}
+                                        </option>
+                                    </select>
+
+                                    <select class="ddlClock" name="ddlendmin" [(ngModel)]="ddlendmin" [disabled]=isDisbleEndMin (change)="loadEndDateTime()">
+                                        <option *ngFor="let min of minutes; let i = index" [value]="min"
+                                            [attr.selected]="i == 0">
+                                            {{min}}
+                                        </option>
+                                    </select>
+
+                                    <select class="ddlTime" name="ddlendtime" [(ngModel)]="ddlendtime" [disabled]=isdisableEndTime (change)="loadEndDateTime()">
+                                        <option *ngFor="let tim of time; let i = index" value={{tim}}
+                                            [attr.selected]="!i">
+                                            {{tim}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="endTimeDate" [(ngModel)]="endDateAndTime" ngModel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone1-grid" class="right-line-space" aria-label="phone1" style="margin-left: 20px;">Phone 1:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone1" placeholder="Phone 1" type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" ngModel aria-label="phone 1" role="textbox" />
+                        </div>
+
+
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-phone8-grid" class="right-line-space" aria-label="phone8">Phone 8:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone8" placeholder="Phone 8" ngModel type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" aria-label="phone 8" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone2-grid" class="right-line-space" aria-label="phone2" style="margin-left: 20px;">Phone 2:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone2" placeholder="Phone 2" type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" ngModel aria-label="phone2" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-email1-grid" aria-label="email1">Email 1:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="email1" placeholder="Email 1" ngModel class="input-font-size" maxlength="50" #email1="ngModel" aria-label="Email1" [ngClass]="{ 'is-invalid': email1.invalid }" [class.is-invalid]="email1.invalid && email1.touched" role="textbox" style="width: 170px;"
+                                email />
+                            <div class="email-error-msg" *ngIf="email1.invalid;">Email1 is invalid</div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone1-grid" class="left-line-space" aria-label="phone3" style="margin-left: 20px;">Phone 3:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone3" placeholder="Phone 3" type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" ngModel aria-label="phone3" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-phone2-grid" class="right-line-space" aria-label="email2">Email 2:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="email2" placeholder="Email 2" ngModel class="input-font-size" maxlength="50" #email2="ngModel" [ngClass]="{ 'is-invalid': email2.invalid }" [class.is-invalid]="email2.invalid && email2.touched" email style="width: 170px;" aria-label="email2"
+                                role="textbox" />
+                            <div class="email-error-msg" *ngIf="email2.invalid;">Email2 is invalid</div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone4-grid" class="right-line-space" aria-label="phone4" style="margin-left: 20px;">Phone 4:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone4" placeholder="Phone 4" ngModel type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" aria-label="phone4" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-email1-grid" aria-label="email3">Email 3:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="email3" placeholder="Email 3" ngModel class="input-font-size" maxlength="50" #email3="ngModel" [ngClass]="{ 'is-invalid': email3.invalid }" [class.is-invalid]="email3.invalid && email3.touched" email aria-label="Email3" role="textbox" style="width: 170px;"
+                            />
+                            <div class="email-error-msg" *ngIf="email3.invalid;">Email3 is invalid</div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone5-grid" class="left-line-space" aria-label="phone5" style="margin-left: 20px;">Phone 5:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone5" placeholder="Phone 5" ngModel type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" aria-label="phone5" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-phone4-grid" class="right-line-space" aria-label="email4">Email 4:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="email4" placeholder="Email 4" ngModel class="input-font-size" maxlength="50" #email4="ngModel" [ngClass]="{ 'is-invalid': email4.invalid }" [class.is-invalid]="email4.invalid && email4.touched" email style="width: 170px;" aria-label="email4"
+                                role="textbox" />
+                            <div class="email-error-msg" *ngIf="email4.invalid;">Email4 is invalid</div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone6-grid" class="right-line-space" aria-label="phone6" style="margin-left: 20px;">Phone 6:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone6" placeholder="Phone 6" ngModel type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" aria-label="phone6" role="textbox" />
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labelRdiv">
+                            <label for="input-email5-grid" aria-label="email5">Email 5:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="email5" type="email" placeholder="Email 5" class="input-font-size" ngModel maxlength="50" #email5="ngModel" [ngClass]="{ 'is-invalid': email5.invalid }" [class.is-invalid]="email5.invalid && email5.touched" email aria-label="Email5" role="textbox"
+                                style="width: 170px;" />
+                            <div class="email-error-msg" *ngIf="email5.invalid;">Email5 is invalid</div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <div id="labeldiv">
+                            <label for="input-phone7-grid" class="left-line-space" aria-label="phone7" style="margin-left: 20px;">Phone 7:</label>
+                        </div>
+                        <div id="inputdiv">
+                            <input name="phone7" placeholder="Phone 7" ngModel type="text" class="input-font-size" maxlength="15" (keypress)="checkNumber($event)" style="width: 170px;" aria-label="phone7" role="textbox" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:right;width: 715px;margin-top: 5px;">
+                    <button class="button button-space" (click)="dncSingleInsert()">Save</button>
+                    <button class="button button-space" (click)="Cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="popup">
+    <div class="popup">
+        <a class="close" (click)="popup = false">&times;</a>
+        <div class="content ">
+            <p class="msg-success">{{ msg }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="confirmpopup">
+    <div class="confirmpopup" (click)="closeModal()">
+        <div class="neo-modal__content no-padding">
+            <div class="headerClassModal flex-spacebetween">
+                <div class="close">
+                    <img height="15" src="assets/Close.jpg" (click)="onNoClick()" />
+                </div>
+            </div>
+            <div>
+                <p class="msg-success">{{ msgconfirm }}</p>
+            </div>
+            <div class="close">
+                <button class="button space-button" (click)="onNoClick()">No</button>
+                <button class="button" (click)="confirm()">Yes </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="snackbar">{{messageText}}</div>
+<div class="loader" *ngIf="isbulkInsert"></div>

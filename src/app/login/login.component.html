@@ -1,0 +1,18 @@
+<div>
+    <div class="dnc-login">
+        <div>
+            <!-- <img id="absa" src=""> -->
+        </div>
+        <div class="header">DNC Login</div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+                <input placeholder="Enter Username" type="text" class="Uname" formControlName="userName">
+            </div>
+            <div>
+                <input placeholder="Enter Password" type="password" class="Pass" formControlName="userPassword">
+            </div>
+            <button class="login-button" type="submit">Login</button>
+        </form>
+        <div id="snackbar">{{loginmsg}}</div>
+    </div>
+</div>
