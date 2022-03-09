@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AppComponent {
-  title = 'dnc';
+  title = 'sample angular app';
 
   constructor(private router: Router,) {
   }
