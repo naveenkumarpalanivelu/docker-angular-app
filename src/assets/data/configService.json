@@ -1,3 +1,3 @@
 {
-    "serverPath": "http://localhost:8080"
+    "serverPath": "http://ec2-3-83-69-57.compute-1.amazonaws.com:8090/"
 }
