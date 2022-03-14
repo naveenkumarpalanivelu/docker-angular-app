@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.dncservices.post(url, body).subscribe(data => {
       var loginResponse: any = data.body;
       console.log("Login respone", loginResponse);
-      if (loginResponse["Webservice_Response"] == "false") { //if (loginResponse["Webservice_Response"] == "true") {
+      if (loginResponse["Webservice_Response"] == "true") {
 
        // console.log("DNC Login Success : ", body);
         this.dncservices.isAuthenticated = true;
