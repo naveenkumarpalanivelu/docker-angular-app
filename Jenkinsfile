@@ -1,17 +1,20 @@
 pipeline {
     agent any
-    tools {nodejs 'nodejs'}
     stages {
         stage("Install project dependencies") {
             steps {
-                sh 'node --version'
-                sh 'npm --version'
-                sh 'npm install'
+                nodejs('nodejs') {
+                    sh 'node --version'
+                    sh 'npm --version'
+                    sh 'npm install'
+                }
             }
         }
         stage("Build Artifact") {
             steps {
-                sh 'npm run build'
+                nodejs('nodejs') {
+                    sh 'npm run build'
+                }
             }
         }
         stage("Upload artifacts to S3 bucket") {
