@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage("Install project dependencies") {
             steps {
+                sh 'node --version'
+                sh 'npm --version'
                 sh 'npm install'
             }
         }
