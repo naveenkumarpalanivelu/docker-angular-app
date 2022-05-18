@@ -24,7 +24,7 @@ pipeline {
         }
         stage("Run ansible playbook") {
             steps {
-                sh 'ansible-playbook /home/ec2-user/devops-playbook/aws_external_s3.yaml -e "ansible_python_interpreter=/usr/bin/python3.7"'
+                ansiblePlaybook(playbook: '/home/ec2-user/devops-playbook/aws_external_s3.yaml')
             }
         }
     }
