@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Run ansible playbook") {
             steps {
-                ansiblePlaybook(inventory: 'inventories/a/hosts', playbook: 'ansible-playbook aws_external_s3.yaml')
+                sh "ansible-playbook aws_external_s3.yaml --user jenkins -e 'ansible_python_interpreter=/usr/bin/python3'"
             }
         }
     }
