@@ -1,0 +1,13 @@
+---
+- name: AWS S3 Bucket List - Ansible
+  hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.7
+  tasks:
+  - name: List keys or Objects
+    amazon.aws.aws_s3:      
+      bucket: devops-artifacts-2022
+      mode: list
+      prefix: "dist"
+    register: listresult
+  - debug: msg={{listresult.s3_keys}}
