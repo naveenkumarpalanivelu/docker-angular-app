@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Run ansible playbook") {
             steps {
-                ansiblePlaybook(playbook: 'aws_external_s3.yaml')
+                sh 'ansible-playbook aws_external_s3.yaml'
             }
         }
     }
