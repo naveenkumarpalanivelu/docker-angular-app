@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        python 'Python-3.7'
+    }
     stages {
         stage("Ansible Init") {
             steps {
@@ -7,7 +10,6 @@ pipeline {
                     def tfHome = tool name: 'ansible'
                     env.PATH = "${tfHome}:${env.PATH}"
                     sh 'ansible --version'
-                    sh 'alias python=python3.7'
                     sh 'python --version'
                 }
             }
