@@ -7,6 +7,7 @@ pipeline {
                     def tfHome = tool name: 'ansible'
                     env.PATH = "${tfHome}:${env.PATH}"
                     sh 'ansible --version'
+                    sh 'alias python=python3.7'
                     sh 'python --version'
                 }
             }
