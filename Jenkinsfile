@@ -8,8 +8,6 @@ pipeline {
                     env.PATH = "${tfHome}:${env.PATH}"
                     sh 'ansible --version'
                     sh 'python --version'
-                    sh 'pip list | grep boto'
-                    sh 'pip3 list | grep boto3'
                 }
             }
         }
