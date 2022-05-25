@@ -2,6 +2,7 @@
 - name: Download object from AWS S3 bucket using Ansible
   hosts: localhost
   vars: 
+    ansible_python_interpreter: /usr/bin/python3.7
     - directories: []
     - files: []
     - destlocation: "/tmp/devops-s3"
