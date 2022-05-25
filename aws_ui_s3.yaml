@@ -9,7 +9,7 @@
   tasks:
 
   - name: Get the list of files first
-    amazon.aws.aws_s3:
+    aws_s3:
       bucket: devops-artifacts-2022
       mode: list
       prefix: "dist"
@@ -38,7 +38,7 @@
 
   
   - name: GET/DOWNLOAD file from S3 bucket
-    amazon.aws.aws_s3:
+    aws_s3:
       bucket: devops-artifacts-2022
       mode: get
       object: "{{item}}"
