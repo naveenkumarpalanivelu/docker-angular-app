@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs'
-        python 'Python-3.7'
-    }
     stages {
         stage("Ansible Init") {
             steps {
