@@ -29,9 +29,7 @@ pipeline {
             steps {
                 sh "cp docker-frontend.yaml /tmp/devops-s3/dist"
                 sh "cp Dockerfile /tmp/devops-s3/dist"
-                sh "cd /tmp/devops-s3/dist"
-                sh "pwd"
-                sh "ansible-playbook docker-frontend.yaml"
+                sh "ansible-playbook /tmp/devops-s3/dist/docker-frontend.yaml"
             }
         }
     }

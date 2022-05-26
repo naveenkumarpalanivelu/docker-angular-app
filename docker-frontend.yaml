@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
   - name: run docker command        
-    command: sudo docker build -t frontend:0.0.5 .
+    command: sudo docker build -t frontend:0.0.5 /tmp/devops-s3/dist/
   - name: run tag command   
     command: sudo docker tag frontend:0.0.5 naveen24788/frontend:0.0.5
   - name: run docker login command  
