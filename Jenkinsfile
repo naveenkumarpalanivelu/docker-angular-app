@@ -27,9 +27,9 @@ pipeline {
         }
         stage("Docker stage") {
             steps {
-                sh "cp docker-frontend.yaml /tmp/devops-s3"
-                sh "cp Dockerfile /tmp/devops-s3"
-                sh "cd /tmp/devops-s3"
+                sh "cp docker-frontend.yaml /tmp/devops-s3/dist"
+                sh "cp Dockerfile /tmp/devops-s3/dist"
+                sh "cd /tmp/devops-s3/dist"
                 sh "ansible-playbook docker-frontend.yaml"
             }
         }
