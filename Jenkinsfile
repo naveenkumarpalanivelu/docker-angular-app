@@ -28,7 +28,7 @@ pipeline {
         stage("Docker stage") {
             steps {
                 script {
-                    def image_id = "$BUILD_NUMBER"
+                    def image_id = "0.0.6"
                     sh "cp docker-frontend.yaml /tmp/devops-s3/dist"
                     sh "cp Dockerfile /tmp/devops-s3/dist"
                     sh 'ansible-playbook /tmp/devops-s3/dist/docker-frontend.yaml --extra-vars "image_id=${image_id}"'
