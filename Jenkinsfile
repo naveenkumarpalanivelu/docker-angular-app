@@ -25,5 +25,13 @@ pipeline {
                 sh "ansible-playbook aws_ui_s3.yaml"
             }
         }
+        stage("Docker stage") {
+            steps {
+                sh "cp docker-frontend.yaml /tmp/devops-s3"
+                sh "cp Dockerfile /tmp/devops-s3"
+                sh "cd /tmp/devops-s3"
+                sh "ansible-playbook docker-frontend.yaml"
+            }
+        }
     }
 }
