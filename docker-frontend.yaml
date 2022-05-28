@@ -7,6 +7,6 @@
   - name: run tag command   
     command: sudo docker tag frontend:{{image_id}} naveen24788/frontend:{{image_id}}
   - name: run docker login command  
-    command: sudo docker login --username naveen24788 --password Servion@123
+    command: sudo docker login --username naveen24788 --password 46c79302-1968-4a60-af09-65742d5fcf31
   - name: run docker push
     command: sudo docker push naveen24788/frontend:{{image_id}}
