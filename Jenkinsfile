@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     def image_id = "$BUILD_NUMBER"
-                    sh "cp -R dist/. /tmp/devops-s3/dist/docker-angular-app"
+                    sh "cp -R dist/docker-angular-app/ /tmp/devops-s3/dist/docker-angular-app/"
                     sh "cp docker-frontend.yaml /tmp/devops-s3/dist"
                     sh "cp Dockerfile /tmp/devops-s3/dist"
                     sh "ansible-playbook /tmp/devops-s3/dist/docker-frontend.yaml --extra-vars image_id=${image_id}"
