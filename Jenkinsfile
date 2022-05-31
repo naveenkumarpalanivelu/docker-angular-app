@@ -1,22 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage("Install project dependencies") {
-            steps {
-                nodejs('nodejs') {
-                    sh 'node --version'
-                    sh 'npm --version'
-                    sh 'npm install'
-                }
-            }
-        }
-        stage("Build Artifact") {
-            steps {
-                nodejs('nodejs') {
-                    sh 'npm run build'
-                }
-            }
-        }
         stage("Ansible Init") {
             steps {
                 script {
