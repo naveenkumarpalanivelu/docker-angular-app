@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontendservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontendservice
+  template:
+    metadata:
+      labels:
+        app: frontendservice
+    spec:
+      containers:
+        - name: frontendservice
+          image: naveen24788/docker-angular-app:${BUILD_NUMBER}
+          ports:
+            - containerPort: 80
