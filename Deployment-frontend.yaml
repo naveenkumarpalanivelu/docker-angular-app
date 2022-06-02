@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontendservice
-          image: naveen24788/docker-angular-app:${BUILD_NUMBER}
+          image: naveen24788/frontend:${BUILD_NUMBER}
           ports:
             - containerPort: 80
