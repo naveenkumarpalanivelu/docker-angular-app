@@ -35,7 +35,6 @@ pipeline {
         stage("Run external ansible playbook") {
             steps {
                 sh 'pip3 install -U boto3'
-                sh 'pip install -U boto'
                 sh 'ansible --version'
                 sh 'python --version'
                 sh "ansible-playbook aws_external_s3.yaml"
