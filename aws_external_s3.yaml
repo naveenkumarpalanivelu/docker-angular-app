@@ -6,7 +6,7 @@
   tasks:
   - name: List keys or Objects
     aws_s3:      
-      bucket: devops-artifacts-2022
+      bucket: devops-demo-artifacts
       mode: list
       prefix: "dist"
     register: listresult
