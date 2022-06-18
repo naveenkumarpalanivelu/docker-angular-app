@@ -19,7 +19,9 @@ pipeline {
         }
         stage("Upload artifacts to S3 bucket") {
             steps {
-                s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'devops-demo-artifacts', excludedFile: '/dist', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '**/dist/docker-angular-app/', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifacts', userMetadata: []
+                withAWS(profile:'S3-Artifacts', region:'us-east-1') {
+                    s3Upload(file:'**/dist/docker-angular-app/', bucket:'devops-demo-artifacts', path:'devops-demo-artifacts/dist/docker-angular-app/')
+                }
             }
         }
         stage("Ansible Init") {
