@@ -20,7 +20,7 @@ pipeline {
         stage("Upload artifacts to S3 bucket") {
             steps {
                 withAWS(profile:'S3-Artifacts', region:'us-east-1') {
-                    s3Upload(file:'**/dist/docker-angular-app/', bucket:'devops-demo-artifacts', path:'devops-demo-artifacts/dist/docker-angular-app/')
+                    s3Upload(file:'dist/docker-angular-app/', bucket:'devops-demo-artifacts', path:'devops-demo-artifacts/dist/docker-angular-app/')
                 }
             }
         }
