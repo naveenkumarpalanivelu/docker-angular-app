@@ -61,7 +61,9 @@ pipeline {
         }
         stage('Deploy frontend microservice') {
             steps {
-                sh 'kubectl apply -f Deployment-frontend.yaml'
+                withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
+                    sh 'kubectl apply -f Deployment-frontend.yaml'
+                }
             }
         }
     }
