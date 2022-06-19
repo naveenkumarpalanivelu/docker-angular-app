@@ -19,7 +19,7 @@ pipeline {
         }
         stage("Upload artifacts to S3 bucket") {
             steps {
-                s3Upload(file:'dist/docker-angular-app/', bucket:'devops-demo-artifacts', path:'devops-demo-artifacts/dist/docker-angular-app/')
+                s3Upload(file:'dist/docker-angular-app/', bucket:'devops-demo-artifacts', path:'dist/docker-angular-app/')
             }
         }
         stage("Ansible Init") {
