@@ -66,8 +66,11 @@ pipeline {
         }
         stage('Deploy frontend microservice') {
             steps {
-                withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
-                    sh 'kubectl apply -f Deployment-frontend.yaml'
+                script {
+                    def image_id = "$BUILD_NUMBER"
+                    withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
+                        sh "kubectl apply -f Deployment-frontend.yaml --extra-vars image_id=${image_id}"
+                    }
                 }
             }
         }

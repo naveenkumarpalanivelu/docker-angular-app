@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontendservice
-          image: naveen24788/frontend:${env.BUILD_NUMBER}
+          image: naveen24788/frontend:{{image_id}}
           ports:
             - containerPort: 80
