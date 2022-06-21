@@ -1,3 +1,3 @@
 {
-    "serverPath": "http://10.100.207.64:32201"
+    "serverPath": "http://backendservice:32201"
 }
