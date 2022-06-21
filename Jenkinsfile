@@ -66,12 +66,9 @@ pipeline {
         }
         stage('Deploy frontend microservice') {
             steps {
-                script {
-                    def image_id = "$BUILD_NUMBER"
-                    withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
-                        sh 'kubectl set image deployment/frontendservice frontendservice=naveen24788/frontend:$BUILD_NUMBER'
-                        sh 'kubectl rollout restart deployment/frontendservice'
-                    }
+                withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
+                    sh 'kubectl set image deployment/frontendservice frontendservice=naveen24788/frontend:$BUILD_NUMBER'
+                    sh 'kubectl rollout restart deployment/frontendservice'
                 }
             }
         }
