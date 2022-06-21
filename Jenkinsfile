@@ -69,7 +69,8 @@ pipeline {
                 script {
                     def image_id = "$BUILD_NUMBER"
                     withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
-                        sh "kubectl apply -f Deployment-frontend.yaml --extra-vars image_id=${image_id}"
+                        sh 'kubectl set image deployment/frontendservice frontendservice=naveen24788/frontend:$BUILD_NUMBER'
+                        sh 'kubectl rollout restart deployment/frontendservice'
                     }
                 }
             }
