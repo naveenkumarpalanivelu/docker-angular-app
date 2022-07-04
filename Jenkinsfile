@@ -67,6 +67,7 @@ pipeline {
         stage('Deploy frontend microservice') {
             steps {
                 withAWS(credentials: 'kubernetes-cluster', region: 'us-east-1') {
+                    sh 'aws eks --region us-east-1 update-kubeconfig --name DevOpsEksCluster3'
                     sh 'kubectl set image deployment/frontendservice frontendservice=naveen24788/frontend:$BUILD_NUMBER'
                     sh 'kubectl rollout restart deployment/frontendservice'
                 }
